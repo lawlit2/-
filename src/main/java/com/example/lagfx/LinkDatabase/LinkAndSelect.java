@@ -14,7 +14,7 @@ public class LinkAndSelect {
             ResultSet set =statement.executeQuery("select dat0 from lagrange.lagdata");
             while (set.next()){
                 DataList.add(set.getDouble(1));
-            };
+            }
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -27,7 +27,7 @@ public class LinkAndSelect {
             ResultSet set =statement.executeQuery("select function from lagrange.lagdata");
             while (set.next()){
                 DataList1.add(set.getDouble(1));
-            };
+            }
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -45,11 +45,18 @@ public class LinkAndSelect {
                 rdd.setY(set.getDouble(2));
               valueAndFuns.add(rdd);
 
-            };
+            }
         }catch (SQLException e){
             e.printStackTrace();
         }
         return valueAndFuns;
     }
-
+    public void insertXY(double x,double y){
+        try(Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lagrange","root","123456");
+            Statement statement = connection.createStatement()){
+            statement.executeUpdate("insert into history values ("+x+","+y+");");
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 }

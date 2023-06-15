@@ -35,7 +35,10 @@ public class LagController {
         List<Double> fun = linkAndSelect.GetFunction();
         y0 = mathTool.LinearInterpolation(value,fun,x0);
         y1 = String.valueOf(y0);
+        linkAndSelect.insertXY(x0,y0);
         y.setText(y1);
+
+
     }
     @FXML
     private javafx.scene.control.TableView<ValueAndFun> TableView;
